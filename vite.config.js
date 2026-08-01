@@ -4,5 +4,5 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/logodesign/', // สำคัญมาก ต้องมีเครื่องหมาย / ครอบหัวและท้าย
+  base: '/logodesign/', // ต้องใส่ชื่อ repository ครอบด้วย / ทั้งหน้าและหลัง
 })
