@@ -12,23 +12,24 @@
   justify-content: center;
 }
 
-/* Mobile: video at 80% with centered positioning */
+/* Mobile: video fills the full viewport height and width */
 @media (max-width: 767px) {
   .video-wrapper::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: #ffffff;
+    background: transparent;
     z-index: 1;
   }
   
   .video-wrapper video {
     position: relative;
     z-index: 2;
-    width: 80% !important;
-    height: 80% !important;
+    width: 100% !important;
+    height: 100% !important;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: 0;
+    transform: translateY(-10%);
   }
 }
 
