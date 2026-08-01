@@ -48,7 +48,7 @@ function App() {
       >
         <div className="nav-content">
           <div style={styles.leftNav}>
-            <a href="/" style={styles.logoLink} aria-label="กลับหน้าแรก">
+            <a href="#/" style={styles.logoLink} aria-label="กลับหน้าแรก">
               <div style={styles.logo}>
                 <img 
                   src="https://framerusercontent.com/images/eqYpXCpT1ZqOX4nZ9UXtG8cx0A.png?width=300&height=300" 
@@ -96,12 +96,12 @@ function App() {
           role="menu"
         >
           <div style={styles.menuContent}>
-            <a href="/" className="menu-item" style={styles.menuItem} role="menuitem" onClick={() => setMenuOpen(false)}>หน้าแรก</a>
-            <a href="/about" className="menu-item" style={styles.menuItem} role="menuitem" onClick={() => setMenuOpen(false)}>เกี่ยวกับเรา</a>
-            <a href="/portfolio" className="menu-item" style={styles.menuItem} role="menuitem" onClick={() => setMenuOpen(false)}>ผลงาน</a>
-            <a href="/services" className="menu-item" style={styles.menuItem} role="menuitem" onClick={() => setMenuOpen(false)}>บริการ</a>
-            <a href="/blog" className="menu-item" style={styles.menuItem} role="menuitem" onClick={() => setMenuOpen(false)}>บทความ</a>
-            <a href="/contact" className="menu-item" style={styles.menuItem} role="menuitem" onClick={() => setMenuOpen(false)}>ติดต่อเรา</a>
+            <a href="#/" className="menu-item" style={styles.menuItem} role="menuitem" onClick={() => setMenuOpen(false)}>หน้าแรก</a>
+            <a href="#/about" className="menu-item" style={styles.menuItem} role="menuitem" onClick={() => setMenuOpen(false)}>เกี่ยวกับเรา</a>
+            <a href="#/portfolio" className="menu-item" style={styles.menuItem} role="menuitem" onClick={() => setMenuOpen(false)}>ผลงาน</a>
+            <a href="#/services" className="menu-item" style={styles.menuItem} role="menuitem" onClick={() => setMenuOpen(false)}>บริการ</a>
+            <a href="#/blog" className="menu-item" style={styles.menuItem} role="menuitem" onClick={() => setMenuOpen(false)}>บทความ</a>
+            <a href="#/contact" className="menu-item" style={styles.menuItem} role="menuitem" onClick={() => setMenuOpen(false)}>ติดต่อเรา</a>
           </div>
         </motion.div>
       )}
@@ -145,11 +145,9 @@ function App() {
               role="group"
               aria-label="Call to action buttons"
             >
-              <a href="/portfolio" style={styles.primaryButton} aria-label="ดูผลงานของเรา">ดูผลงาน</a>
-              <a href="/contact" style={styles.secondaryButton} aria-label="ติดต่อเราเพื่อขอคำปรึกษา">ติดต่อเรา</a>
+              <a href="#/portfolio" style={styles.primaryButton} aria-label="ดูผลงานของเรา">ดูผลงาน</a>
+              <a href="#/contact" style={styles.secondaryButton} aria-label="ติดต่อเราเพื่อขอคำปรึกษา">ติดต่อเรา</a>
             </motion.div>
-
-            
           </div>
 
           <div className="footer-right">
