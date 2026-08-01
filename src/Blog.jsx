@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { motion } from 'motion/react'
 import { Menu, X } from 'lucide-react'
 import Footer from './components/Footer'
@@ -311,7 +312,7 @@ function Blog() {
       >
         <div className="nav-content">
           <div style={styles.leftNav}>
-            <a href="/" style={styles.logoLink}>
+            <Link to="/" style={styles.logoLink}>
               <div style={styles.logo}>
                 <img 
                   src="https://framerusercontent.com/images/eqYpXCpT1ZqOX4nZ9UXtG8cx0A.png?width=300&height=300" 
@@ -322,7 +323,7 @@ function Blog() {
                 />
                 <span className="brand-text">eskimo</span>
               </div>
-            </a>
+            </Link>
             <div className="tags-pill">
               <span style={styles.tagLabel}>Logo Design</span>
               <span style={styles.tagLabel}>Brand Identity</span>
@@ -345,12 +346,12 @@ function Blog() {
           className="menu-dropdown"
         >
           <div style={styles.menuContent}>
-            <a href="/" className="menu-item" style={styles.menuItem}>หน้าแรก</a>
-            <a href="/about" className="menu-item" style={styles.menuItem}>เกี่ยวกับเรา</a>
-            <a href="/portfolio" className="menu-item" style={styles.menuItem}>ผลงาน</a>
-            <a href="/services" className="menu-item" style={styles.menuItem}>บริการ</a>
-            <a href="/blog" className="menu-item" style={styles.menuItem}>บทความ</a>
-            <a href="/contact" className="menu-item" style={styles.menuItem}>ติดต่อเรา</a>
+            <Link to="/" className="menu-item" style={styles.menuItem}>หน้าแรก</Link>
+            <Link to="/about" className="menu-item" style={styles.menuItem}>เกี่ยวกับเรา</Link>
+            <Link to="/portfolio" className="menu-item" style={styles.menuItem}>ผลงาน</Link>
+            <Link to="/services" className="menu-item" style={styles.menuItem}>บริการ</Link>
+            <Link to="/blog" className="menu-item" style={styles.menuItem}>บทความ</Link>
+            <Link to="/contact" className="menu-item" style={styles.menuItem}>ติดต่อเรา</Link>
           </div>
         </motion.div>
       )}

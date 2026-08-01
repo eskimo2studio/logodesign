@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'motion/react'
+import { Link } from 'react-router-dom'
 import { Menu, X, Mail } from 'lucide-react'
 import './App.css'
 
@@ -28,7 +29,7 @@ function App() {
         aria-hidden="true"
       >
         <video
-          src="https://framerusercontent.com/assets/yE3wvxOcnLRjqC1MI8WwnNfzWwc.mp4"
+          src="https://framerusercontent.com/assets/HQj5wQFNVEzimSwH0aJ2D3OIgvs.mp4"
           autoPlay
           muted
           playsInline
@@ -48,7 +49,7 @@ function App() {
       >
         <div className="nav-content">
           <div style={styles.leftNav}>
-            <a href="/" style={styles.logoLink} aria-label="กลับหน้าแรก">
+            <Link to="/" style={styles.logoLink} aria-label="กลับหน้าแรก">
               <div style={styles.logo}>
                 <img 
                   src="https://framerusercontent.com/images/eqYpXCpT1ZqOX4nZ9UXtG8cx0A.png?width=300&height=300" 
@@ -59,7 +60,7 @@ function App() {
                 />
                 <span className="brand-text">eskimo</span>
               </div>
-            </a>
+            </Link>
 
             <div className="tags-pill" role="text" aria-label="Services">
               <span style={styles.tagLabel}>Logo Design</span>
@@ -96,12 +97,12 @@ function App() {
           role="menu"
         >
           <div style={styles.menuContent}>
-            <a href="/" className="menu-item" style={styles.menuItem} role="menuitem" onClick={() => setMenuOpen(false)}>หน้าแรก</a>
-            <a href="/about" className="menu-item" style={styles.menuItem} role="menuitem" onClick={() => setMenuOpen(false)}>เกี่ยวกับเรา</a>
-            <a href="/portfolio" className="menu-item" style={styles.menuItem} role="menuitem" onClick={() => setMenuOpen(false)}>ผลงาน</a>
-            <a href="/services" className="menu-item" style={styles.menuItem} role="menuitem" onClick={() => setMenuOpen(false)}>บริการ</a>
-            <a href="/blog" className="menu-item" style={styles.menuItem} role="menuitem" onClick={() => setMenuOpen(false)}>บทความ</a>
-            <a href="/contact" className="menu-item" style={styles.menuItem} role="menuitem" onClick={() => setMenuOpen(false)}>ติดต่อเรา</a>
+            <Link to="/" className="menu-item" style={styles.menuItem} role="menuitem" onClick={() => setMenuOpen(false)}>หน้าแรก</Link>
+            <Link to="/about" className="menu-item" style={styles.menuItem} role="menuitem" onClick={() => setMenuOpen(false)}>เกี่ยวกับเรา</Link>
+            <Link to="/portfolio" className="menu-item" style={styles.menuItem} role="menuitem" onClick={() => setMenuOpen(false)}>ผลงาน</Link>
+            <Link to="/services" className="menu-item" style={styles.menuItem} role="menuitem" onClick={() => setMenuOpen(false)}>บริการ</Link>
+            <Link to="/blog" className="menu-item" style={styles.menuItem} role="menuitem" onClick={() => setMenuOpen(false)}>บทความ</Link>
+            <Link to="/contact" className="menu-item" style={styles.menuItem} role="menuitem" onClick={() => setMenuOpen(false)}>ติดต่อเรา</Link>
           </div>
         </motion.div>
       )}
@@ -145,8 +146,8 @@ function App() {
               role="group"
               aria-label="Call to action buttons"
             >
-              <a href="/portfolio" style={styles.primaryButton} aria-label="ดูผลงานของเรา">ดูผลงาน</a>
-              <a href="/contact" style={styles.secondaryButton} aria-label="ติดต่อเราเพื่อขอคำปรึกษา">ติดต่อเรา</a>
+              <Link to="/portfolio" style={styles.primaryButton} aria-label="ดูผลงานของเรา">ดูผลงาน</Link>
+              <Link to="/contact" style={styles.secondaryButton} aria-label="ติดต่อเราเพื่อขอคำปรึกษา">ติดต่อเรา</Link>
             </motion.div>
 
             

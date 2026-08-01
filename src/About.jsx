@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { motion } from 'motion/react'
 import { Menu, X, Award, Users, Target, Zap } from 'lucide-react'
 import Footer from './components/Footer'
@@ -350,7 +351,7 @@ function About() {
       >
         <div className="nav-content">
           <div style={styles.leftNav}>
-            <a href="/" style={styles.logoLink}>
+            <Link to="/" style={styles.logoLink}>
               <div style={styles.logo}>
                 <img 
                   src="https://framerusercontent.com/images/eqYpXCpT1ZqOX4nZ9UXtG8cx0A.png?width=300&height=300" 
@@ -361,7 +362,7 @@ function About() {
                 />
                 <span className="brand-text">eskimo</span>
               </div>
-            </a>
+            </Link>
             <div className="tags-pill">
               <span style={styles.tagLabel}>Logo Design</span>
               <span style={styles.tagLabel}>Brand Identity</span>
@@ -384,12 +385,12 @@ function About() {
           className="menu-dropdown"
         >
           <div style={styles.menuContent}>
-            <a href="/" className="menu-item" style={styles.menuItem}>หน้าแรก</a>
-            <a href="/about" className="menu-item" style={styles.menuItem}>เกี่ยวกับเรา</a>
-            <a href="/portfolio" className="menu-item" style={styles.menuItem}>ผลงาน</a>
-            <a href="/services" className="menu-item" style={styles.menuItem}>บริการ</a>
-            <a href="/blog" className="menu-item" style={styles.menuItem}>บทความ</a>
-            <a href="/contact" className="menu-item" style={styles.menuItem}>ติดต่อเรา</a>
+            <Link to="/" className="menu-item" style={styles.menuItem}>หน้าแรก</Link>
+            <Link to="/about" className="menu-item" style={styles.menuItem}>เกี่ยวกับเรา</Link>
+            <Link to="/portfolio" className="menu-item" style={styles.menuItem}>ผลงาน</Link>
+            <Link to="/services" className="menu-item" style={styles.menuItem}>บริการ</Link>
+            <Link to="/blog" className="menu-item" style={styles.menuItem}>บทความ</Link>
+            <Link to="/contact" className="menu-item" style={styles.menuItem}>ติดต่อเรา</Link>
           </div>
         </motion.div>
       )}
@@ -423,7 +424,7 @@ function About() {
                   เราเลือกใช้ความหนาวสุดขั้วเป็นแรงบันดาลใจ เพื่อให้แบรนด์ของลูกค้าดูโดดเด่น และมีความจำง่ายในตลาด
                 </p>
                 <p style={styles.paragraph}>
-                  มาสคอตของเราเป็นน้อง Eskimo ที่หัวเป็นไอศกรีม ที่กำลังละลาย เปรียบเหมือนโอกาสทางธุรกิจ
+                  มาสคอตของเราเป็นน้อง Eskimo หัวเป็นไอศกรีมที่กำลังละลาย เปรียบเหมือนโอกาสทางธุรกิจ
                   ที่ต้องรีบคว้าไว้ก่อนจะละลายไป
                 </p>
                 <p style={styles.paragraph}>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { motion } from 'motion/react'
 import { Menu, X } from 'lucide-react'
 import Footer from './components/Footer'
@@ -355,7 +355,7 @@ function BlogDetail() {
       >
         <div className="nav-content">
           <div style={styles.leftNav}>
-            <a href="/" style={styles.logoLink}>
+            <Link to="/" style={styles.logoLink}>
               <div style={styles.logo}>
                 <img 
                   src="https://framerusercontent.com/images/eqYpXCpT1ZqOX4nZ9UXtG8cx0A.png?width=300&height=300" 
@@ -366,7 +366,7 @@ function BlogDetail() {
                 />
                 <span className="brand-text">eskimo</span>
               </div>
-            </a>
+            </Link>
             <div className="tags-pill">
               <span style={styles.tagLabel}>Logo Design</span>
               <span style={styles.tagLabel}>Brand Identity</span>
@@ -389,12 +389,12 @@ function BlogDetail() {
           className="menu-dropdown"
         >
           <div style={styles.menuContent}>
-            <a href="/" className="menu-item" style={styles.menuItem}>หน้าแรก</a>
-            <a href="/about" className="menu-item" style={styles.menuItem}>เกี่ยวกับเรา</a>
-            <a href="/portfolio" className="menu-item" style={styles.menuItem}>ผลงาน</a>
-            <a href="/services" className="menu-item" style={styles.menuItem}>บริการ</a>
-            <a href="/blog" className="menu-item" style={styles.menuItem}>บทความ</a>
-            <a href="/contact" className="menu-item" style={styles.menuItem}>ติดต่อเรา</a>
+            <Link to="/" className="menu-item" style={styles.menuItem}>หน้าแรก</Link>
+            <Link to="/about" className="menu-item" style={styles.menuItem}>เกี่ยวกับเรา</Link>
+            <Link to="/portfolio" className="menu-item" style={styles.menuItem}>ผลงาน</Link>
+            <Link to="/services" className="menu-item" style={styles.menuItem}>บริการ</Link>
+            <Link to="/blog" className="menu-item" style={styles.menuItem}>บทความ</Link>
+            <Link to="/contact" className="menu-item" style={styles.menuItem}>ติดต่อเรา</Link>
           </div>
         </motion.div>
       )}
@@ -410,11 +410,11 @@ function BlogDetail() {
           <div style={styles.notFound}>
             <h1 style={styles.notFoundTitle}>ไม่พบบทความ</h1>
             <p style={styles.notFoundText}>ขออภัย ไม่พบบทความที่คุณกำลังค้นหา</p>
-            <a href="/blog" style={styles.contactButton}>กลับไปหน้าบทความ</a>
+            <Link to="/blog" style={styles.contactButton}>กลับไปหน้าบทความ</Link>
           </div>
         ) : (
           <>
-            <a href="/blog" style={styles.backLink}>← กลับไปหน้าบทความ</a>
+            <Link to="/blog" style={styles.backLink}>← กลับไปหน้าบทความ</Link>
             
             <motion.article
               initial={{ opacity: 0, y: 20 }}
@@ -460,9 +460,9 @@ function BlogDetail() {
                   <a href="https://lin.ee/pr7LIDO" target="_blank" rel="noopener noreferrer" style={styles.contactButton}>
                     ติดต่อผ่าน Line
                   </a>
-                  <a href="/contact" style={{...styles.contactButton, background: 'transparent', color: '#000000', border: '1px solid rgba(0, 0, 0, 0.2)'}}>
+                  <Link to="/contact" style={{...styles.contactButton, background: 'transparent', color: '#000000', border: '1px solid rgba(0, 0, 0, 0.2)'}}>
                     ดูข้อมูลการติดต่อ
-                  </a>
+                  </Link>
                 </div>
               </div>
             </motion.article>
