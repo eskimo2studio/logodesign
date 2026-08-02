@@ -23,9 +23,10 @@ jobs:
         uses: actions/setup-node@v5
         with:
           node-version: 24
+          cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build project
         run: npm run build
@@ -33,7 +34,7 @@ jobs:
       - name: Upload artifact for GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./dist  # ตรวจสอบว่าโฟลเดอร์ Build ของโปรเจกต์คุณชื่อ dist หรือไม่ (ถ้าเป็น out ให้เปลี่ยนเป็น ./out)
 
   deploy:
     needs: build-and-deploy
