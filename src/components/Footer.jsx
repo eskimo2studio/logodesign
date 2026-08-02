@@ -47,8 +47,8 @@ function Footer() {
   }
 
   return (
-    <footer className="page-footer" style={styles.footer}>
-      <div style={styles.footerContent}>
+    <footer className="footer-wrapper">
+      <div className="footer-content" style={styles.footerContent}>
         <div style={styles.copyright} className="footer-copyright">
           © {new Date().getFullYear()} eskimo all rights reserved.
         </div>

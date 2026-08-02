@@ -98,10 +98,27 @@ const getRelativeTime = (dateString) => {
   return diffYears === 1 ? 'ปีที่แล้ว' : `${diffYears} ปีที่แล้ว`
 }
 
-const isImageUrl = (value) => {
-  if (typeof value !== 'string') return false
+const getImageUrl = (value) => {
+  if (typeof value !== 'string') return null
   const trimmed = value.trim()
-  return /^https?:\/\/.+\.(png|jpe?g|gif|webp|avif|svg)(\?.*)?$/i.test(trimmed)
+
+  // 1) Markdown image ![alt](url)
+  const mdMatch = trimmed.match(/!\[[^\]]*\]\(([^)]+)\)/i)
+  if (mdMatch) return mdMatch[1].trim()
+
+  // 2) HTML <img src="...">
+  const htmlMatch = trimmed.match(/<img[^>]+src=["']([^"']+)["'][^>]*>/i)
+  if (htmlMatch) return htmlMatch[1].trim()
+
+  // 3) Direct URL (allow protocol-relative //, data: URIs, query/hash)
+  const urlMatch = trimmed.match(/^(?:https?:)?\/\/[^\s]+\.(png|jpe?g|gif|webp|avif|svg)([\?\#][^\s]*)?$/i)
+  if (urlMatch) return trimmed
+
+  // 4) Absolute http(s) with optional params/fragments
+  const absMatch = trimmed.match(/^https?:\/\/[^\s]+\.(png|jpe?g|gif|webp|avif|svg)([\?\#][^\s]*)?$/i)
+  if (absMatch) return trimmed
+
+  return null
 }
 
 function BlogDetail() {
@@ -445,18 +462,19 @@ function BlogDetail() {
 
               <div style={styles.content}>
                 <p style={styles.contentParagraph}>{post.excerpt}</p>
-                {post.content.map((paragraph, index) => (
-                  isImageUrl(paragraph) ? (
+                {post.content.map((paragraph, index) => {
+                  const imageUrl = getImageUrl(paragraph)
+                  return imageUrl ? (
                     <img
                       key={index}
-                      src={paragraph.trim()}
+                      src={imageUrl}
                       alt={`blog-image-${index}`}
                       style={styles.contentImage}
                     />
                   ) : (
                     <p key={index} style={styles.contentParagraph}>{paragraph}</p>
                   )
-                ))}
+                })}
               </div>
 
               {/* Contact Section */}
