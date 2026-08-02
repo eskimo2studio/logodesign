@@ -107,3 +107,10 @@
   break-inside: avoid;
   margin-bottom: 32px;
 }
+
+/* Spinner Animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

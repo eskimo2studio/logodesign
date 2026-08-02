@@ -6,7 +6,7 @@ import Footer from './components/Footer'
 import './BlogDetail.css'
 
 // ฟังก์ชันดึงข้อมูลจาก Google Sheets
-const fetchBlogPost = async (id) => {
+const fetchBlogPostByTitle = async (titleSlug) => {
   try {
     const sheetId = '1GhRZzTX3EwwZ3H-QnzljkepkUCOdddNLif0H3kRtmBM'
     const gid = '0'
@@ -16,27 +16,36 @@ const fetchBlogPost = async (id) => {
     const text = await response.text()
     const json = JSON.parse(text.substring(47).slice(0, -2))
     
-    const row = json.table.rows[parseInt(id)]
-    if (!row) return null
+    // ค้นหา post ที่ตรงกับ title
+    const decodedTitle = decodeURIComponent(titleSlug).replace(/-/g, ' ')
     
-    const cells = row.c
-    return {
-      id: parseInt(id),
-      date: cells[0]?.v || '',
-      image: cells[1]?.v || '',
-      title: cells[2]?.v || '',
-      excerpt: cells[3]?.v || '',
-      category: cells[4]?.v || '',
-      content: [
-        cells[5]?.v || '',
-        cells[6]?.v || '',
-        cells[7]?.v || '',
-        cells[8]?.v || '',
-        cells[9]?.v || '',
-        cells[10]?.v || '',
-        cells[11]?.v || '',
-      ].filter(c => c) // กรองเฉพาะที่มีเนื้อหา
+    for (let i = 1; i < json.table.rows.length; i++) {
+      const row = json.table.rows[i]
+      const cells = row.c
+      const title = cells[2]?.v || ''
+      
+      if (title.toLowerCase() === decodedTitle.toLowerCase()) {
+        return {
+          id: i,
+          date: cells[0]?.v || '',
+          image: cells[1]?.v || '',
+          title: title,
+          excerpt: cells[3]?.v || '',
+          category: cells[4]?.v || '',
+          content: [
+            cells[5]?.v || '',
+            cells[6]?.v || '',
+            cells[7]?.v || '',
+            cells[8]?.v || '',
+            cells[9]?.v || '',
+            cells[10]?.v || '',
+            cells[11]?.v || '',
+          ].filter(c => c) // กรองเฉพาะที่มีเนื้อหา
+        }
+      }
     }
+    
+    return null
   } catch (error) {
     console.error('Error fetching blog post:', error)
     return null
@@ -113,7 +122,7 @@ function BlogDetail() {
   useEffect(() => {
     const loadPost = async () => {
       setLoading(true)
-      const postData = await fetchBlogPost(id)
+      const postData = await fetchBlogPostByTitle(id)
       setPost(postData)
       setLoading(false)
     }

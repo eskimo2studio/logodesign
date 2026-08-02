@@ -5,6 +5,11 @@ import { Menu, X } from 'lucide-react'
 import Footer from './components/Footer'
 import './Blog.css'
 
+// ฟังก์ชันแปลง title เป็น URL slug
+const titleToSlug = (title) => {
+  return encodeURIComponent(title.replace(/\s+/g, '-').toLowerCase())
+}
+
 // ฟังก์ชันดึงข้อมูลจาก Google Sheets
 const fetchBlogPosts = async () => {
   try {
@@ -390,7 +395,7 @@ function Blog() {
                 style={styles.articleCard}
                 whileHover={{ y: -8, boxShadow: '0 10px 40px rgba(0,0,0,0.1)' }}
               >
-                <a href={`/blog/${article.id}`} style={styles.articleLink}>
+                <Link to={`/blog/${titleToSlug(article.title)}`} style={styles.articleLink}>
                   <img 
                     src={article.image} 
                     alt={article.title}
@@ -404,7 +409,7 @@ function Blog() {
                       <span>{getRelativeTime(article.date)}</span>
                     </div>
                   </div>
-                </a>
+                </Link>
               </motion.article>
             ))}
           </div>
