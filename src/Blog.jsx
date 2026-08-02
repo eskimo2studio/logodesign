@@ -183,7 +183,7 @@ function Blog() {
       cursor: 'pointer',
     },
     tagLabel: {
-      fontSize: '11px',
+      fontSize: '13px',
       color: '#000000',
       fontWeight: 400,
       fontFamily: "'IBM Plex Sans Thai', sans-serif",
