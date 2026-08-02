@@ -5,74 +5,33 @@ import { Menu, X } from 'lucide-react'
 import Footer from './components/Footer'
 import './Blog.css'
 
-// ฟังก์ชันแปลง title เป็น URL slug
+const ANIMATION_EASE = [0.16, 1, 0.3, 1]
+const SHEET_ID = '1GhRZzTX3EwwZ3H-QnzljkepkUCOdddNLif0H3kRtmBM'
+const GID = '0'
+
+const MENU_ITEMS = [
+  { path: '/', label: 'หน้าแรก' },
+  { path: '/about', label: 'เกี่ยวกับเรา' },
+  { path: '/portfolio', label: 'ผลงาน' },
+  { path: '/services', label: 'บริการ' },
+  { path: '/blog', label: 'บทความ' },
+  { path: '/contact', label: 'ติดต่อเรา' },
+]
+
 const titleToSlug = (title) => {
   return encodeURIComponent(title.replace(/\s+/g, '-').toLowerCase())
 }
 
-// ฟังก์ชันดึงข้อมูลจาก Google Sheets
-const fetchBlogPosts = async () => {
-  try {
-    const sheetId = '1GhRZzTX3EwwZ3H-QnzljkepkUCOdddNLif0H3kRtmBM'
-    const gid = '0' // Sheet แรก, เปลี่ยนถ้าใช้ sheet อื่น
-    const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&gid=${gid}`
-    
-    const response = await fetch(url)
-    const text = await response.text()
-    
-    // แปลง response จาก Google (มี prefix ที่ต้องตัดออก)
-    const json = JSON.parse(text.substring(47).slice(0, -2))
-    
-    // แปลงข้อมูลเป็น array ของ blog posts
-    const posts = json.table.rows.slice(1).map((row, index) => {
-      const cells = row.c
-      return {
-        id: index + 1,
-        date: cells[0]?.v || '',
-        image: cells[1]?.v || '',
-        title: cells[2]?.v || '',
-        excerpt: cells[3]?.v || '',
-        category: cells[4]?.v || '',
-        content: {
-          section1: cells[5]?.v || '',
-          section2: cells[6]?.v || '',
-          section3: cells[7]?.v || '',
-          section4: cells[8]?.v || '',
-          section5: cells[9]?.v || '',
-          section6: cells[10]?.v || '',
-          section7: cells[11]?.v || '',
-        }
-      }
-    }).filter(post => post.title) // กรองเฉพาะที่มี title
-    
-    return posts
-  } catch (error) {
-    console.error('Error fetching blog posts:', error)
-    return []
-  }
-}
-
-// ฟังก์ชันแปลงวันที่จาก Google Sheets (รูปแบบ DD/MM/YY) เป็น Date object
 const parseSheetDate = (dateString) => {
   if (!dateString) return new Date()
-  
-  // รูปแบบ: 31/7/26 หรือ 31/07/2026
   const parts = dateString.split('/')
   if (parts.length !== 3) return new Date()
-  
-  let day = parseInt(parts[0])
-  let month = parseInt(parts[1]) - 1 // เดือนใน JS เริ่มที่ 0
-  let year = parseInt(parts[2])
-  
-  // ถ้าปีเป็น 2 หลัก เช่น 26 = 2026
-  if (year < 100) {
-    year += 2000
-  }
-  
+  let [day, month, year] = parts.map(p => parseInt(p))
+  month -= 1
+  if (year < 100) year += 2000
   return new Date(year, month, day)
 }
 
-// ฟังก์ชันแปลงวันที่เป็น relative time
 const getRelativeTime = (dateString) => {
   const date = parseSheetDate(dateString)
   const today = new Date()
@@ -93,9 +52,41 @@ const getRelativeTime = (dateString) => {
   }
   if (diffMonths === 1) return 'เดือนที่แล้ว'
   if (diffMonths < 12) return `${diffMonths} เดือนที่แล้ว`
-
   const diffYears = Math.floor(diffMonths / 12)
   return diffYears === 1 ? 'ปีที่แล้ว' : `${diffYears} ปีที่แล้ว`
+}
+
+const fetchBlogPosts = async () => {
+  try {
+    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&gid=${GID}`
+    const response = await fetch(url)
+    const text = await response.text()
+    const json = JSON.parse(text.substring(47).slice(0, -2))
+    
+    return json.table.rows.slice(1).map((row, index) => {
+      const cells = row.c
+      return {
+        id: index + 1,
+        date: cells[0]?.v || '',
+        image: cells[1]?.v || '',
+        title: cells[2]?.v || '',
+        excerpt: cells[3]?.v || '',
+        category: cells[4]?.v || '',
+        content: {
+          section1: cells[5]?.v || '',
+          section2: cells[6]?.v || '',
+          section3: cells[7]?.v || '',
+          section4: cells[8]?.v || '',
+          section5: cells[9]?.v || '',
+          section6: cells[10]?.v || '',
+          section7: cells[11]?.v || '',
+        }
+      }
+    }).filter(post => post.title)
+  } catch (error) {
+    console.error('Error fetching blog posts:', error)
+    return []
+  }
 }
 
 function Blog() {

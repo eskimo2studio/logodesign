@@ -5,4 +5,5 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   base: '/logodesign/',
   plugins: [react()],
+  base: '/logodesign/', // ต้องใส่ชื่อ repository ครอบด้วย / ทั้งหน้าและหลัง
 })
